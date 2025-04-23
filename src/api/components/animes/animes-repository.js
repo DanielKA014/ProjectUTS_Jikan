@@ -63,6 +63,10 @@ async function getAnimeStreaming(id){
   return Animes.getAnimeStreaming();
 }
 
+async function getCharacterFullById(characterId) {
+   return Characters.getCharacterFullById(); 
+}
+
 module.exports = {
   addAnime,
   findById,
@@ -73,4 +77,5 @@ module.exports = {
   getAnimeRecomendations,
   getExternalLinksByAnimeId,
   getAnimeStreaming,
+  getCharacterFullById,
 };

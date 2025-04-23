@@ -31,4 +31,9 @@ module.exports = (app) => {
 
   //mendapatkan info terkait platform anime streaming
   route.get('/:id/streaming', animeController.getAnimeStreaming);
+
+  // Route untuk mendapatkan karakter full berdasarkan ID karakter dalam anime
+  route.get('/:animeId/characters/:characterId/full', animeController.getCharacterFullById);
+
+
 };
