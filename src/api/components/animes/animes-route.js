@@ -28,4 +28,7 @@ module.exports = (app) => {
 
   //mendapatkan eksternal links anime dari anime id
   route.get('/:id/external', animeController.getExternalLinksByAnimeId);
+
+  //mendapatkan info terkait platform anime streaming
+  route.get('/:id/streaming', animeController.getAnimeStreaming);
 };

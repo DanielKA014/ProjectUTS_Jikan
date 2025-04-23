@@ -59,6 +59,10 @@ async function getExternalLinksByAnimeId(id){
   return anime?.external_links || null;
 }
 
+async function getAnimeStreaming(id){
+  return Animes.getAnimeStreaming();
+}
+
 module.exports = {
   addAnime,
   findById,
@@ -68,4 +72,5 @@ module.exports = {
   getAnimeMoreInfo,
   getAnimeRecomendations,
   getExternalLinksByAnimeId,
+  getAnimeStreaming,
 };

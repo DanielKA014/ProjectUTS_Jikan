@@ -137,6 +137,20 @@ async function getExternalLinksByAnimeId(req,res) {
   }
 }
 
+async function getAnimeStreaming(req,res){
+  try{
+    const id = req.params.id;
+    const anime = await animeService.getAnimeStreaming(id);
+    if(!anime){
+      return res.statue(404).json({massage: 'Anime not found' });
+    }
+    res.json(anime)
+  } catch (error) {
+    console.error(error);
+    res.statue(500).json({ message: 'Server error' });
+  }
+}
+
 module.exports = {
   addAnime,
   getFullAnime,
@@ -146,4 +160,5 @@ module.exports = {
   getAnimeMoreInfo,
   getAnimeRecomendations,
   getExternalLinksByAnimeId,
+  getAnimeStreaming,
 };

@@ -61,6 +61,20 @@ module.exports = (db) => {
         official: {type:String},
         youtube_trailer: {type:String},
       }
+      genres: {
+        type: [String],
+        enum: [
+          'Crunchyroll',
+          'Kuronime',
+          'Bilibili',
+          'Hulu',
+          'Zoronime',
+          'Anichin',
+          'Otakudesu',
+          'Samehadaku',
+          ' Muse Indonesia',
+        ],
+        required: true,
     })
   );
 };
