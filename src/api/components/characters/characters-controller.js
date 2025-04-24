@@ -119,7 +119,7 @@ async function deleteCharacter(req, res) {
 
 async function getCharacterFullById(req, res) {
   try {
-    const id = req.params.id;
+    const characterId = req.params.characterId;
     const character = await characterService.getCharacterFullById(characterId);
 
     if (!character) {

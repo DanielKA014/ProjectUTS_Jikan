@@ -24,9 +24,11 @@ async function deleteCharacter(id) {
   return Characters.findByIdAndDelete(id);
 }
 
-async function getCharacterFullById(characterId) {
-  return Characters.findById(characterId);
-}
+async function getCharacterFullById(characterId, animeId) {
+  return await Characters.findOne({
+    _id: characterId,
+    animeId: animeId,
+  });
 
 module.exports = {
   addCharactersToAnime,
