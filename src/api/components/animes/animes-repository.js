@@ -60,6 +60,14 @@ async function getRandomAnime() {
   return Animes.aggregate([{ $sample: { size: 1 } }]);
 }
 
+async function g(id) {
+  return Animes.findById(id, 'reviews');
+}
+
+async function getExternalLinksByAnimeId(id) {
+  return Animes.findById(id, 'external');
+}
+
 module.exports = {
   addAnime,
   getAnimes,
@@ -69,4 +77,5 @@ module.exports = {
   getAnimeMoreInfo,
   getAnimeRecomendations,
   getRandomAnime,
+  getExternalLinksByAnimeId,
 };

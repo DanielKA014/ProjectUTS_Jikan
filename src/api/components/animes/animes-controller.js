@@ -212,6 +212,22 @@ async function getRandomAnime(req, res) {
   }
 }
 
+async function getExternalLinksByAnimeId(req, res) {
+  const { animeId } = req.params;
+  try {
+    const links = await animeService.getExternalLinksByAnimeId(animeId);
+    if (!links || links.length === 0) {
+      return res.status(404).json({ message: 'External links not found' });
+    }
+    res.json(links);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+
+
 module.exports = {
   addAnime,
   getAnimes,
@@ -222,4 +238,5 @@ module.exports = {
   getAnimeMoreInfo,
   getAnimeRecomendations,
   getRandomAnime,
+  getExternalLinksByAnimeId,
 };

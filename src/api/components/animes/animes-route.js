@@ -26,4 +26,7 @@ module.exports = (app) => {
   // mendapatkan rekomendasi anime dengan id anime
   route.get('/:id/recomendations', animeController.getAnimeRecomendations);
 
+  // Mendapatkan external anime dari anime id
+  route.get('/:id/external', animeController.getExternalLinksByAnimeId);
+
 };

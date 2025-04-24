@@ -32,6 +32,11 @@ async function getRandomAnime() {
   return await animeRepository.getRandomAnime();
 }
 
+async function getExternalLinksByAnimeId(id) {
+  return await animeRepository.getExternalLinksByAnimeId(id)
+}
+
+
 module.exports = {
   addAnime,
   getAnimes,
@@ -41,4 +46,5 @@ module.exports = {
   getAnimeMoreInfo,
   getAnimeRecomendations,
   getRandomAnime,
+  getExternalLinksByAnimeId,
 };
