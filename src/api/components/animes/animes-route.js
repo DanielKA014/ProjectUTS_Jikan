@@ -29,8 +29,6 @@ module.exports = (app) => {
   // Mendapatkan external anime dari anime id
   route.get('/:id/external', animeController.getExternalLinksByAnimeId);
 
-<<<<<<< HEAD
-=======
   //mendapatkan info terkait platform anime streaming
   route.get('/:id/streaming', animeController.getAnimeStreaming);
 
@@ -39,5 +37,4 @@ module.exports = (app) => {
  
   // mendapatkan karakter berdasarkan Id anime
   route.get('/characters/:characterId', animeController.getCharacterById);
->>>>>>> Hansen
 };
