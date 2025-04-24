@@ -41,10 +41,10 @@ module.exports = (db) =>
       image_url: [String],
 
       external_links: {
-        mal: { type: String },      // MyAnimeList
+        mal: { type: String }, // MyAnimeList
         anilist: { type: String },
         official: { type: String },
-        youtube_trailer: { type: String},
+        youtube_trailer: { type: String },
       },
       Streaming: {
         type: [String],
@@ -60,6 +60,6 @@ module.exports = (db) =>
           ' Muse Indonesia',
         ],
         required: true,
-}
+      },
     })
   );

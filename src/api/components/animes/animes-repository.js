@@ -60,11 +60,11 @@ async function getRandomAnime() {
 }
 
 async function getExternalLinksByAnimeId(id) {
-  return Animes.findById(id, 'external');
+  return Animes.findById(id, 'external_links');
 }
 
-async function getAnimeStreaming(id){
-  return Animes.getAnimeStreaming(id);
+async function getAnimeStreaming(id) {
+  return Animes.findById(id);
 }
 
 module.exports = {

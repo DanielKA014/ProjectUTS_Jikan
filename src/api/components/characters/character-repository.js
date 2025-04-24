@@ -1,6 +1,6 @@
 const { Characters } = require('../../../models');
 
-async function createCharacter(characterData) {
+async function addCharactersToAnime(characterData) {
   return Characters.create(characterData);
 }
 
@@ -8,8 +8,12 @@ async function getCharactersByAnimeId(animeId) {
   return Characters.find({ animeId });
 }
 
-async function getAllCharacters() {
-  return Characters.find({});
+async function getAllCharacters(page, limit) {
+  return Characters.aggregate([
+    { $match: {} },
+    { $skip: (page - 1) * limit },
+    { $limit: limit },
+  ]);
 }
 
 async function getCharacterById(id) {
@@ -21,11 +25,11 @@ async function deleteCharacter(id) {
 }
 
 async function getCharacterFullById(characterId) {
-  return Characters.findById(characterId); 
+  return Characters.findById(characterId);
 }
 
 module.exports = {
-  createCharacter,
+  addCharactersToAnime,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,
