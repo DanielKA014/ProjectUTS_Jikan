@@ -82,7 +82,11 @@ async function getCharacterFullById(animeId) {
 
 async function getCharacterById(animeId) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   return Characters.getCharacterFullById(animeId); 
+=======
+  return Characters.getCharacterFullById(animeId); 
+>>>>>>> Stashed changes
 =======
   return Characters.getCharacterFullById(animeId); 
 >>>>>>> Stashed changes
