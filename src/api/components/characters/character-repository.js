@@ -29,6 +29,7 @@ async function getCharacterFullById(characterId, animeId) {
     _id: characterId,
     animeId: animeId,
   });
+}
 
 module.exports = {
   addCharactersToAnime,
