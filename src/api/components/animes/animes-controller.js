@@ -95,7 +95,6 @@ async function getAnimes(req, res) {
     // default page = 1 dan limit = 3
     const { page = 1, limit = 3 } = req.query;
     // kurangi dengan 1 agar indeks page mulai dari 1 dari sisi client
-    console.log('page:', page, 'limit:', limit);
     const animes = await animeService.getAnimes(
       parseInt(page),
       parseInt(limit)

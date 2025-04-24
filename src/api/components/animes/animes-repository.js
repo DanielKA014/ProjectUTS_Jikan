@@ -10,7 +10,6 @@ async function findById(id) {
   const animes = await Animes.findById(id);
   const episodes = await getEpisodesByAnimeId(id);
   const themes = await getAnimeThemes(id);
-  console.log(themes);
   return { animes, episodes, themes };
 }
 

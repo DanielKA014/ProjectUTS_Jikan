@@ -1,9 +1,5 @@
 const { Characters } = require('../../../models');
 
-async function createCharacter(characterData) {
-  return Characters.create(characterData);
-}
-
 async function getCharactersByAnimeId(animeId) {
   return Characters.find({ animeId });
 }
@@ -20,12 +16,11 @@ async function deleteCharacter(id) {
   return Characters.findByIdAndDelete(id);
 }
 
-async function getCharacterFullById(animeId) {
-  return Characters.getCharacterFullById(animeId); 
+async function getCharacterFullById(characterId) {
+  return Characters.findById(characterId); 
 }
 
 module.exports = {
-  createCharacter,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,

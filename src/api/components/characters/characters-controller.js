@@ -1,50 +1,10 @@
 const { errorResponder, errorTypes } = require('../../../core/errors');
 const characterService = require('./characters-service');
-const logger = require('../../../core/logger')('characters');
-
-async function createCharacter(req, res) {
-  try {
-    const { name, nicknames, about, animeId } = req.body;
-
-    if (!name) {
-      throw errorResponder(
-        errorTypes.VALIDATION_ERROR,
-        'Character must have a name!'
-      );
-    }
-
-    const data = { 
-      name, 
-      nicknames: nicknames || [], 
-      about,
-      animeId 
-    };
-
-    const character = await characterService.createCharacter(data);
-
-    if (!character) {
-      throw errorResponder(
-        errorTypes.UNPROCESSABLE_ENTITY,
-        'Failed to create character'
-      );
-    }
-
-    return res.status(201).json({
-      message: 'Character created successfully',
-      character,
-    });
-  } catch (error) {
-    logger.error(error);
-    return res.status(error.status || 500).json({ 
-      message: error.message || 'Server error',
-    });
-  }
-}
 
 async function getCharactersByAnimeId(req, res) {
   try {
     const { id } = req.params;
-    const characters = await characterService.getCharactersByAnimeId(id);
+    const characters = await characterService.getCharactersByAnimeId(animeId);
 
     if (!characters || characters.length === 0) {
       return res.status(404).json({
@@ -54,24 +14,28 @@ async function getCharactersByAnimeId(req, res) {
 
     return res.json(characters);
   } catch (error) {
-    logger.error(error);
+    console.error(error);
     return res.status(500).json({ message: 'Server error' });
   }
 }
 
 async function getAllCharacters(req, res) {
   try {
-    const characters = await characterService.getAllCharacters();
+    // default page = 1 dan limit = 3
+    const { page = 1, limit = 3 } = req.query;
+    // kurangi dengan 1 agar indeks page mulai dari 1 dari sisi client
+    const characters = await characterService.getAllCharacters(
+      parseInt(page),
+      parseInt(limit)
+    );
     
     if (!characters || characters.length === 0) {
-      return res.status(404).json({ 
-        message: 'No characters found',
-      });
+      return res.status(404).json({ message: 'No characters found' });
     }
     
-    return res.json(characters);
+    return res.status(200).json(characters);
   } catch (error) {
-    logger.error(error);
+    console.error(error);
     return res.status(500).json({ message: 'Server error' });
   }
 }
@@ -89,7 +53,7 @@ async function getCharacterById(req, res) {
     
     return res.json(character);
   } catch (error) {
-    logger.error(error);
+    console.error(error);
     return res.status(500).json({ message: 'Server error' });
   }
 }
@@ -110,7 +74,7 @@ async function deleteCharacter(req, res) {
       character,
     });
   } catch (error) {
-    logger.error(error);
+    console.error(error);
     return res.status(500).json({ message: 'Server error' });
   }
 }
@@ -118,7 +82,7 @@ async function deleteCharacter(req, res) {
 async function getCharacterFullById(req, res) {
   try {
     const id = req.params.id; 
-    const character = await characterService.getCharacterFullById(id);
+    const character = await characterService.getCharacterFullById(characterId);
 
     if (!character) {
       return res
@@ -133,7 +97,6 @@ async function getCharacterFullById(req, res) {
 }
 
 module.exports = {
-  createCharacter,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,
