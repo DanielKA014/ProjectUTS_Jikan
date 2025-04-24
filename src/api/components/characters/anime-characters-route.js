@@ -6,6 +6,9 @@ const characterController = require('./characters-controller');
 module.exports = (app) => {
   app.use('/anime/:id/characters', route);
 
+  // Create new character
+  route.post('/', characterController.createCharacter);
+
   // Get anime characters
   route.get('/', characterController.getCharactersByAnimeId);
 
