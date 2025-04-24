@@ -64,6 +64,22 @@ async function getExternalLinksByAnimeId(id) {
   return Animes.findById(id, 'external');
 }
 
+async function getAnimeStreaming(id){
+  return Animes.getAnimeStreaming(id);
+}
+
+async function getCharacterFullById(animeId) {
+   return Characters.getCharacterFullById(animeId); 
+}
+
+async function getCharacterById(animeId) {
+<<<<<<< Updated upstream
+  return Characters.getCharacterFullById(animeId); 
+=======
+  return Characters.getCharacterFullById(animeId); 
+>>>>>>> Stashed changes
+}
+
 module.exports = {
   addAnime,
   getAnimes,
@@ -74,4 +90,7 @@ module.exports = {
   getAnimeRecomendations,
   getRandomAnime,
   getExternalLinksByAnimeId,
+  getAnimeStreaming,
+  getCharacterFullById,
+  getCharacterById,
 };

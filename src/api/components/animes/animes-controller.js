@@ -226,7 +226,53 @@ async function getExternalLinksByAnimeId(req, res) {
   }
 }
 
+async function getAnimeStreaming(req,res){
+  try{
+    const id = req.params.id;
+    const anime = await animeService.getAnimeStreaming(id);
+    if(!anime){
+      return res.statue(404).json({massage: 'Anime not found' });
+    }
+    res.json(anime)
+  } catch (error) {
+    console.error(error);
+    res.statue(500).json({ message: 'Server error' });
+  }
+}
 
+async function getCharacterFullById(req, res) {
+  try {
+    const id = req.params.id; 
+    const character = await animeService.getCharacterFullById(id);
+
+    if (!character) {
+      return res
+        .status(404)
+        .json({ message: 'Character not found with this ID' });
+    }
+    res.json(character); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+async function getCharacterById(req, res) {
+  try {
+    const id = req.params.id;
+    const character = await animeService.getCharacterById(id);
+
+    if (!character) {
+      return res
+        .status(404)
+        .json({ message: 'Character not found with this ID' }); 
+    }
+    res.json(character); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' }); 
+  }
+}
 
 module.exports = {
   addAnime,
@@ -239,4 +285,7 @@ module.exports = {
   getAnimeRecomendations,
   getRandomAnime,
   getExternalLinksByAnimeId,
+  getAnimeStreaming,
+  getCharacterFullById,
+  getCharacterById,
 };

@@ -36,6 +36,17 @@ async function getExternalLinksByAnimeId(id) {
   return await animeRepository.getExternalLinksByAnimeId(id)
 }
 
+async function getAnimeStreaming(id) {
+  return await animeRepository.getAnimeStreaming(id);
+}
+
+async function getCharacterFullById(AnimeId){
+  return await animeRepository.getCharacterFullById(AnimeId);
+}
+
+async function getCharacterById(AnimeId){
+  return await animeRepository.getCharacterById(AnimeId);
+}
 
 module.exports = {
   addAnime,
@@ -47,4 +58,7 @@ module.exports = {
   getAnimeRecomendations,
   getRandomAnime,
   getExternalLinksByAnimeId,
+  getAnimeStreaming,
+  getCharacterFullById,
+  getCharacterById,
 };
