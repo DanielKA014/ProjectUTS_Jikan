@@ -1,15 +1,15 @@
 const characterRepository = require('./character-repository');
 
-async function createCharacter(characterData) {
-  return characterRepository.createCharacter(characterData);
+async function addCharactersToAnime(characterData) {
+  return await characterRepository.addCharactersToAnime(characterData);
 }
 
 async function getCharactersByAnimeId(AnimeId) {
   return characterRepository.getCharactersByAnimeId(AnimeId);
 }
 
-async function getAllCharacters() {
-  return characterRepository.getAllCharacters();
+async function getAllCharacters(page, limit) {
+  return characterRepository.getAllCharacters(page, limit);
 }
 
 async function getCharacterById(id) {
@@ -20,12 +20,12 @@ async function deleteCharacter(id) {
   return characterRepository.deleteCharacter(id);
 }
 
-async function getCharacterFullById(characterId){
+async function getCharacterFullById(characterId) {
   return await characterRepository.getCharacterFullById(characterId);
 }
 
 module.exports = {
-  createCharacter,
+  addCharactersToAnime,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,

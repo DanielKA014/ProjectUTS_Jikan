@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.use('/anime/:id/characters', route);
 
   // Create new character
-  route.post('/', characterController.createCharacter);
+  route.post('/', characterController.addCharactersToAnime);
 
   // Get anime characters
   route.get('/', characterController.getCharactersByAnimeId);

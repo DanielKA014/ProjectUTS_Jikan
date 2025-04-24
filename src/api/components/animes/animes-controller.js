@@ -39,6 +39,8 @@ async function addAnime(req, res) {
       genres,
       duration,
       image_url,
+      external_links,
+      streaming_url,
     } = req.body;
 
     // instasiasi field tanggal agar dianggap sebagai
@@ -70,6 +72,15 @@ async function addAnime(req, res) {
       genres,
       duration,
       image_url: Array.isArray(image_url) ? image_url : [image_url], // force single string into array
+      external_links: {
+        mal: external_links.mal,
+        anilist: external_links.anilist,
+        official: external_links.official,
+        youtube_trailer: external_links.youtube_trailer,
+      },
+      streaming_url: Array.isArray(streaming_url)
+        ? streaming_url
+        : [streaming_url], // force single string into array
     };
 
     const anime = await animeService.addAnime(data);
@@ -94,7 +105,6 @@ async function getAnimes(req, res) {
   try {
     // default page = 1 dan limit = 3
     const { page = 1, limit = 3 } = req.query;
-    // kurangi dengan 1 agar indeks page mulai dari 1 dari sisi client
     const animes = await animeService.getAnimes(
       parseInt(page),
       parseInt(limit)
@@ -212,27 +222,27 @@ async function getRandomAnime(req, res) {
 }
 
 async function getExternalLinksByAnimeId(req, res) {
-  const { animeId } = req.params;
+  const { id } = req.params;
   try {
-    const links = await animeService.getExternalLinksByAnimeId(animeId);
-    if (!links || links.length === 0) {
+    const links = await animeService.getExternalLinksByAnimeId(id);
+    if (!links || !links.external_links) {
       return res.status(404).json({ message: 'External links not found' });
     }
-    res.json(links);
+    res.json(links.external_links);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 }
 
-async function getAnimeStreaming(req,res){
-  try{
+async function getAnimeStreaming(req, res) {
+  try {
     const id = req.params.id;
     const anime = await animeService.getAnimeStreaming(id);
-    if(!anime){
-      return res.statue(404).json({massage: 'Anime not found' });
+    if (!anime) {
+      return res.statue(404).json({ massage: 'Anime not found' });
     }
-    res.json(anime)
+    res.json(anime);
   } catch (error) {
     console.error(error);
     res.statue(500).json({ message: 'Server error' });
