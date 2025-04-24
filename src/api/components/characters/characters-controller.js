@@ -1,6 +1,45 @@
 const { errorResponder, errorTypes } = require('../../../core/errors');
 const characterService = require('./characters-service');
 
+async function createCharacter(req, res) {
+  try {
+    const { name, nicknames, about, animeId } = req.body;
+
+    if (!name) {
+      throw errorResponder(
+        errorTypes.VALIDATION_ERROR,
+        'Character must have a name!'
+      );
+    }
+
+    const data = { 
+      name, 
+      nicknames: nicknames || [], 
+      about,
+      animeId 
+    };
+
+    const character = await characterService.createCharacter(data);
+
+    if (!character) {
+      throw errorResponder(
+        errorTypes.UNPROCESSABLE_ENTITY,
+        'Failed to create character'
+      );
+    }
+
+    return res.status(201).json({
+      message: 'Character created successfully',
+      character,
+    });
+  } catch (error) {
+    logger.error(error);
+    return res.status(error.status || 500).json({ 
+      message: error.message || 'Server error',
+    });
+  }
+}
+
 async function getCharactersByAnimeId(req, res) {
   try {
     const { id } = req.params;
@@ -97,6 +136,7 @@ async function getCharacterFullById(req, res) {
 }
 
 module.exports = {
+  createCharacter,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,
