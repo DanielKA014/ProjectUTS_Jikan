@@ -6,9 +6,6 @@ const characterController = require('./characters-controller');
 module.exports = (app) => {
   app.use('/characters', route);
 
-  // Create new character
-  route.post('/', characterController.createCharacter);
-
   // Get all characters
   route.get('/', characterController.getAllCharacters);
 
