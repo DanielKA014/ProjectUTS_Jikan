@@ -60,6 +60,6 @@ module.exports = (db) =>
           ' Muse Indonesia',
         ],
         required: true,
-      }
+}
     })
   );
