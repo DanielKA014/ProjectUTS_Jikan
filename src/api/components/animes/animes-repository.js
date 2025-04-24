@@ -53,10 +53,6 @@ async function getAnimeRecomendations(id) {
   return Animes.findById(id, 'recomendation');
 }
 
-async function getAnimeReviews(id) {
-  return Animes.findById(id, 'reviews');
-}
-
 async function getRandomAnime() {
   // menggunakan $sample untuk mendapatkan satu data acak
   // set size = 1 untuk mendapatkan satu data acak
@@ -72,6 +68,5 @@ module.exports = {
   getAnimePictures,
   getAnimeMoreInfo,
   getAnimeRecomendations,
-  getAnimeReviews,
   getRandomAnime,
 };

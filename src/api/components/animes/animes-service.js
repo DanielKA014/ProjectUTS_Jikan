@@ -28,10 +28,6 @@ async function getAnimeRecomendations(id) {
   return await animeRepository.getAnimeRecomendations(id);
 }
 
-async function getAnimeReviews(id) {
-  return await animeRepository.getAnimeReviews(id);
-}
-
 async function getRandomAnime() {
   return await animeRepository.getRandomAnime();
 }
@@ -44,6 +40,5 @@ module.exports = {
   getAnimePictures,
   getAnimeMoreInfo,
   getAnimeRecomendations,
-  getAnimeReviews,
   getRandomAnime,
 };

@@ -199,20 +199,6 @@ async function getAnimeRecomendations(req, res) {
   }
 }
 
-async function getAnimeReviews(req, res) {
-  try {
-    const id = req.params.id;
-    const anime = await animeService.getAnimeReviews(id);
-    if (!anime) {
-      return res.status(404).json({ message: 'Anime not found' });
-    }
-    res.json(anime);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-}
-
 async function getRandomAnime(req, res) {
   try {
     const anime = await animeService.getRandomAnime();
@@ -235,6 +221,5 @@ module.exports = {
   getAnimePictures,
   getAnimeMoreInfo,
   getAnimeRecomendations,
-  getAnimeReviews,
   getRandomAnime,
 };
