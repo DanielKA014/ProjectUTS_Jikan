@@ -1,7 +1,6 @@
-const { get } = require('mongoose');
 const { Animes } = require('../../../models');
-const { Episodes } = require('../../../models');
-const { Themes } = require('../../../models');
+const { getEpisodesByAnimeId } = require('./../episodes/episodes-repository');
+const { getAnimeThemes } = require('./../themes/themes-repository');
 
 async function addAnime(animeData) {
   return Animes.create(animeData);
@@ -9,8 +8,9 @@ async function addAnime(animeData) {
 
 async function findById(id) {
   const animes = await Animes.findById(id);
-  const episodes = await Episodes.findById(id);
-  const themes = await Themes.findById(id);
+  const episodes = await getEpisodesByAnimeId(id);
+  const themes = await getAnimeThemes(id);
+  console.log(themes);
   return { animes, episodes, themes };
 }
 
