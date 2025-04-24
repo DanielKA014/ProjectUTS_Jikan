@@ -31,4 +31,13 @@ module.exports = (app) => {
 
   // Mendapatkan external anime dari anime id
   route.get('/:id/external', animeController.getExternalLinksByAnimeId);
+
+  //mendapatkan info terkait platform anime streaming
+  route.get('/:id/streaming', animeController.getAnimeStreaming);
+
+  // mendapatkan karakter full berdasarkan Id karakter dalam anime
+  route.get('/:animeId/characters/:characterId/full', animeController.getCharacterFullById);
+ 
+  // mendapatkan karakter berdasarkan Id anime
+  route.get('/characters/:characterId', animeController.getCharacterById);
 };
