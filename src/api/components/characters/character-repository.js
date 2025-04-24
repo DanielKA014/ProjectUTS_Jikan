@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const { Characters } = require('../../../models');
 
 async function addCharactersToAnime(characterData) {
@@ -26,8 +27,8 @@ async function deleteCharacter(id) {
 
 async function getCharacterFullById(characterId, animeId) {
   return await Characters.findOne({
-    _id: characterId,
-    animeId: animeId,
+    _id: new mongoose.Types.ObjectId(characterId),
+    animeId: new mongoose.Types.ObjectId(animeId),
   });
 }
 

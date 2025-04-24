@@ -120,8 +120,10 @@ async function deleteCharacter(req, res) {
 async function getCharacterFullById(req, res) {
   try {
     const characterId = req.params.characterId;
-    const character = await characterService.getCharacterFullById(characterId);
+    const animeId = req.params.id;
 
+    const character = await characterService.getCharacterFullById(characterId, animeId);
+    console.log(animeId, characterId);
     if (!character) {
       return res
         .status(404)
