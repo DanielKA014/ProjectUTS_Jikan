@@ -39,27 +39,15 @@ module.exports = (db) =>
       genres: { type: [String], required: true },
       duration: String,
       image_url: [String],
-
       external_links: {
-        mal: { type: String },      // MyAnimeList
+        mal: { type: String }, // MyAnimeList
         anilist: { type: String },
         official: { type: String },
-        youtube_trailer: { type: String},
+        youtube_trailer: { type: String },
       },
-      Streaming: {
+      streaming_url: {
         type: [String],
-        enum: [
-          'Crunchyroll',
-          'Kuronime',
-          'Bilibili',
-          'Hulu',
-          'Zoronime',
-          'Anichin',
-          'Otakudesu',
-          'Samehadaku',
-          ' Muse Indonesia',
-        ],
-        required: true,
-      }
+        required: false,
+      },
     })
   );
