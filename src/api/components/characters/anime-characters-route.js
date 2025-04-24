@@ -13,5 +13,5 @@ module.exports = (app) => {
   route.get('/', characterController.getCharactersByAnimeId);
 
   // mendapatkan karakter full berdasarkan Id karakter dalam anime
-  route.get('/:characterId/full', animeController.getCharacterFullById);
+  route.get('/:characterId/full', characterController.getCharacterFullById);
 };

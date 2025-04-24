@@ -20,10 +20,15 @@ async function deleteCharacter(id) {
   return characterRepository.deleteCharacter(id);
 }
 
+async function getCharacterFullById(AnimeId){
+  return await characterRepository.getCharacterFullById(AnimeId);
+}
+
 module.exports = {
   createCharacter,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,
   deleteCharacter,
+  getCharacterFullById,
 };

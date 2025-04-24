@@ -20,10 +20,15 @@ async function deleteCharacter(id) {
   return Characters.findByIdAndDelete(id);
 }
 
+async function getCharacterFullById(animeId) {
+  return Characters.getCharacterFullById(animeId); 
+}
+
 module.exports = {
   createCharacter,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,
   deleteCharacter,
+  getCharacterFullById,
 };

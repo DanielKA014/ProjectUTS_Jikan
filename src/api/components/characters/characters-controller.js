@@ -115,10 +115,28 @@ async function deleteCharacter(req, res) {
   }
 }
 
+async function getCharacterFullById(req, res) {
+  try {
+    const id = req.params.id; 
+    const character = await characterService.getCharacterFullById(id);
+
+    if (!character) {
+      return res
+        .status(404)
+        .json({ message: 'Character not found with this ID' });
+    }
+    res.json(character); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
 module.exports = {
   createCharacter,
   getCharactersByAnimeId,
   getAllCharacters,
   getCharacterById,
   deleteCharacter,
+  getCharacterFullById,
 };
