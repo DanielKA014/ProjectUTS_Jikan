@@ -28,4 +28,7 @@ module.exports = (app) => {
 
   // mendapatkan review anime dari id anime
   route.get('/:id/reviews', animeController.getAnimeReviews);
+
+  // Mendapatkan external anime dari anime id
+  route.get('/:id/external', animeController.getExternalLinksByAnimeId);
 };

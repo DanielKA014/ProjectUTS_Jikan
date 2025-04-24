@@ -39,5 +39,12 @@ module.exports = (db) =>
       genres: { type: [String], required: true },
       duration: String,
       image_url: [String],
+
+      external_links: {
+        mal: { type: String },      // MyAnimeList
+        anilist: { type: String },
+        official: { type: String },
+        youtube_trailer: { type: String},
+      },
     })
   );
