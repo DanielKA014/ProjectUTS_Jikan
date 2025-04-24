@@ -1,6 +1,7 @@
 const e = require('express');
 const { errorResponder, errorTypes } = require('../../../core/errors');
 const { validateUrlArray } = require('../../../utils/url-validator');
+const { validateUrlReq } = require('../../../utils/url-validator');
 const animeService = require('./animes-service');
 
 async function validateRequiredField(data) {
@@ -58,6 +59,11 @@ async function addAnime(req, res) {
     await validateRequiredField(req.body);
 
     await validateUrlArray(image_url);
+    await validateUrlReq(external_links.mal);
+    await validateUrlReq(external_links.anilist);
+    await validateUrlReq(external_links.official);
+    await validateUrlReq(external_links.youtube_trailer);
+    await validateUrlArray(streaming_url);
 
     const data = {
       title_en,
